@@ -1,14 +1,44 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PetTweet</title>
+    <title>Pet-Tweet</title>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script type="text/javascript">
+      WebFontConfig = {
+        google: { families: [ 'Unica+One::latin' ] }
+      };
+      (function() {
+        var wf = document.createElement('script');
+        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+          '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+      })();
+    </script>
   </head>
 
   <body>
+    <div class=header>
+    <h1><a href="/tweets">P</a></h1>
+    <div class="search">検索ワードを入れてください...</div>
+    <i class="fas fa-user-plus">新規登録</i>
+    <i class="fas fa-user">ログイン</i>
+    <div class="menu">
+      <div class=list>
+        <div class=link>aaa</div>
+        <div class=link>bbb</div>
+        <div class=link>ccc</div>
+        <div class=link>ddd</div>
+        <div class=link>eee</div>
+      </div>
+    </div>
+  </div>
+  
+
     <%= yield %>
   </body>
 </html>
