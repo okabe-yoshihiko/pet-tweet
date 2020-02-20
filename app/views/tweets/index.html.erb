@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/scss" href="tweets.scss">
-  <title>Pet-tweet</title>
+<title>pettweet</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.card-columns{
+  max-width:900px;
+  margin: 20px auto;
+}
+
+</style>
 </head>
-
 <body>
- 
-
-<div class="container">
-  <div class="box">
+<div class="card-columns">
     <% @tweets.each do |tweet| %>
-    <img src=<%= tweet.image %>>
-    <%= simple_format(tweet.text) %>
-    <i class="fas fa-heart">3.5k</i>
-    <i class="fas fa-paw"></i>
-    <% end %>
+    <div class="card">
+    <img src=<%= tweet.image %> class="card-img-top">
+    <div class="card-body">
+      <p class="card-text"><%= tweet.text%></p>
+    </div> 
   </div>
+<%end%> 
 </div>
 </body>
 </html>
