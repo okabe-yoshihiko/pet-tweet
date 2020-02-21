@@ -1,0 +1,33 @@
+
+<style>
+.card_box{
+  width:500px;
+  margin:20px 100px;
+}
+</style>
+
+
+<div class="card_box">
+<div class="card">
+    <img src=<%= @tweet.image %> class="card-img-top">
+    <div class="btn-group">  
+  <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <div class="dropdown-menu">
+    <li>
+        <%= button_to'削除', "/tweets/#{@tweet.id}", method: :delete %>
+    </li>      
+    <li>
+        <%= button_to'編集', "/tweets/#{@tweet.id}/edit", method: :get %>
+    </li>
+    <li>
+        <%= button_to '詳細', "/tweets/#{@tweet.id}", method: :get %>
+    </li>
+  </div>
+</div>
+    <div class="card-body">
+      <p class="card-text"><%= @tweet.text%></p>
+    </div> 
+  </div>
+  </div>
