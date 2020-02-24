@@ -1,22 +1,49 @@
-  <div class="card">
+<style>
+.user_box{
+  float:right;
+}
+.likes{
+  float:right;
+  margin-left:20px;
+}
+.card-text{
+   padding-left:5px;
+
+}
+.likes{
+  margin-right:5px;
+}
+</style>
+
+<div class="card">
     <img src=<%= tweet.image %> class="card-img-top">
-    <div class="more"> 
-  <button type="button" class="arrow" data-toggle="dropdown" >
-    <span><%= image_tag 'arrow_top.png' %></span>
-  </button>
-  <div class="dropdown-menu">
-    <li>
+  <div class="more"> 
+     <button type="button" class="arrow" data-toggle="dropdown" >
+      <span><%= image_tag 'arrow_top.png' %></span>
+     </button>
+    <div class="dropdown-menu">
+       <% if user_signed_in? && current_user.id == tweet.user_id %>
+      <li>
         <%= link_to'削除', "/tweets/#{tweet.id}", method: :delete %>
-    </li>      
-    <li>
+      </li>      
+      <li>
         <%= link_to'編集', "/tweets/#{tweet.id}/edit", method: :get %>
-    </li>
-    <li>
+      </li>
+      <%end%>
+      <li>
         <%= link_to '詳細', "/tweets/#{tweet.id}", method: :get %>
-    </li>
-  </div>
+      </li>
+    </div>
+      <div class="user_box">
+       <% if user_signed_in?%>
+        <%= tweet.user.nickname%>
+          <div class="likes">
+        <%= render 'likes/like', tweet: tweet %>
+          </div>
+            <%end%>
+      </div>
+      <div class="card-body">
+        <p class="card-text"><%= tweet.text%></p>
+      </div>
+  </div> 
 </div>
-    <div class="card-body">
-      <p class="card-text"><%= tweet.text%></p>
-    </div> 
-  </div>
