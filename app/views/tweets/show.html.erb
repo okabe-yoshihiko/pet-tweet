@@ -1,12 +1,41 @@
 
 <style>
 .card_box{
-  width:500px;
-  margin:20px 100px;
+
+}
+.container{
+  box-shadow:0px 0px 5px 0px;
+   padding:10px;
+   margin-left:30px;
+}
+.comments{
+  height:450px;
+  overflow:scroll;
+}
+.form-group{
+  bottom:0
+}
+.subbtn{
+  margin-top:5px;
+  width:100%;
+  border-radius: 30px;
+}
+.showcase{
+display:flex;
+margin:100px 50px;
+}
+.com_box{
+  display:flex;
+}
+.date{
+  color:gray;
+  margin-top:5px;
+  font-size:12px;
+  padding-left:30px;
 }
 </style>
 
-
+<div class="showcase">
 <div class="card_box">
 <div class="card">
     <img src=<%= @tweet.image %> class="card-img-top">
@@ -15,19 +44,48 @@
     <span class="sr-only">Toggle Dropdown</span>
   </button>
   <div class="dropdown-menu">
+     <% if user_signed_in? && current_user.id == @tweet.user_id %>
     <li>
-        <%= button_to'削除', "/tweets/#{@tweet.id}", method: :delete %>
+        <%= link_to'削除', "/tweets/#{@tweet.id}", method: :delete %>
     </li>      
     <li>
-        <%= button_to'編集', "/tweets/#{@tweet.id}/edit", method: :get %>
+        <%= link_to'編集', "/tweets/#{@tweet.id}/edit", method: :get %>
     </li>
+    <%end%>
     <li>
-        <%= button_to '詳細', "/tweets/#{@tweet.id}", method: :get %>
+        <%= link_to '詳細', "/tweets/#{@tweet.id}", method: :get %>
     </li>
   </div>
+  <%= @nickname %>
 </div>
     <div class="card-body">
       <p class="card-text"><%= @tweet.text%></p>
     </div> 
   </div>
   </div>
+   <div class="container">
+    <div class="comments">
+      <h6>コメント一覧</h6>
+      <% if @comments %>
+        <% @comments.each do |comment| %>
+          <div class="com_box">
+            <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
+            <div class="comment"><%= comment.text %></div>
+           <div class="date"> <%= comment.created_at %></div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+   <% if current_user %>
+      <%= form_with(model: [@tweet, @comment], local: true) do |form| %>
+      <div class="form-group">
+      <%= form.text_area :text, placeholder: "コメントする",class:'form-control', rows: "2" %>
+      </div>
+      <div class="subbtn">
+        <%= form.submit "SEND",class:'subbtn btn-primary' %>
+        </div>
+      <% end %>
+    <% else %>
+      <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
+    <% end %>
+    </div>

@@ -18,8 +18,8 @@
 
    <div class="field">
         <%= f.label :nickname %> <em>(6 characters maximum)</em><br />
-        <%= f.text_field :nickname, autofocus: true, autocomplete:"nickname", maxlength: "6",class:'form-control' %>
-   </div>
+        <%= f.text_field :nickname, autofocus: true, maxlength: "6",class:'form-control' %>
+        </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>

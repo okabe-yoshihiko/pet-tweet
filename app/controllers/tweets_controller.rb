@@ -27,13 +27,21 @@ class TweetsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @comments = @tweet.comments.includes(:user).order("created_at DESC")
   end
 
+  def iine(user)
+    likes.create(user_id: user.id)
+  end
 
+  def uniine(user)
+    likes.find_by(user_id: user.id).destroy
+  end
 
   private
   def tweet_params
-    params.require(:tweet).permit(:name, :image, :text).merge(user_id: current_user.id)
+    params.require(:tweet).permit(:image, :text).merge(user_id: current_user.id)
   end
 
   def set_tweet
@@ -44,5 +52,6 @@ class TweetsController < ApplicationController
     redirect_to action: :index unless user_signed_in?
   end
 
+  
   
 end
