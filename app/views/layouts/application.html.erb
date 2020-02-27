@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
- 
+    <%= include_gon %>
     <title>Pet-Tweet</title>
      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -18,7 +18,7 @@
 </head>
  <style>
  h6{
-   margin:10px 20px;
+   margin:10px;
  }
 
  .navbar{
@@ -27,7 +27,12 @@
    top: 0;
    z-index: 999;
  }
-
+.icon_image {
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
+  object-fit: cover;
+}
  </style>
   <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -49,15 +54,16 @@
        <li class="nav-item">
         <a class="nav-link" href="/pets/">find</a>
       </li>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  <%= form_with(url: tweets_searches_path, local: true, method: :get, class: "form-inline my-2 my-lg-0") do |form| %>
+  <%= form.text_field :keyword, placeholder: "投稿を検索する", class: "form-control mr-sm-2" %>
+  <%= form.submit "検索", class: "btn btn-outline-success my-2 my-sm-0" %>
+<% end %>
     </form>
     </ul>
  <% if user_signed_in? %>
-<h6>"<%= current_user.nickname %>"がログイン中</h6>
+<h6><img src=<%= current_user.image %> class = "icon_image">"<%= current_user.nickname %>"がログイン中</h6>
  <div class="btn-group" role="group" aria-label="Basic example">
-  <%= link_to "編集", edit_user_path(current_user),class:'btn btn-primary' %>
+  <%= link_to "編集", edit_user_registration_path(current_user),class:'btn btn-primary' %>
   <%= link_to "Logout", destroy_user_session_path, method: :delete ,class:'btn btn-primary' %>
 </div>
  <% else %>

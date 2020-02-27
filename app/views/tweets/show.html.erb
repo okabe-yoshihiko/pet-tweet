@@ -1,8 +1,6 @@
 
 <style>
-.card_box{
 
-}
 .container{
   box-shadow:0px 0px 5px 0px;
    padding:10px;
@@ -33,31 +31,48 @@ margin:100px 50px;
   font-size:12px;
   padding-left:30px;
 }
+.likes{
+  display:flex;
+}
+.icon-image {
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  object-fit: cover;
+}
 </style>
 
 <div class="showcase">
 <div class="card_box">
+<span class="cardheader">
+ <a href="/users/<%= @tweet.user.id %>">
+<img class="icon-image" src=<%= @tweet.user.image %>> <%= @tweet.user.nickname%>
+</span></a>
 <div class="card">
     <img src=<%= @tweet.image %> class="card-img-top">
     <div class="btn-group">  
-  <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  
+ 
+     <% if user_signed_in? && current_user.id == @tweet.user_id %>
+      <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <span class="sr-only">Toggle Dropdown</span>
   </button>
-  <div class="dropdown-menu">
-     <% if user_signed_in? && current_user.id == @tweet.user_id %>
+      <div class="dropdown-menu">
     <li>
         <%= link_to'削除', "/tweets/#{@tweet.id}", method: :delete %>
     </li>      
     <li>
         <%= link_to'編集', "/tweets/#{@tweet.id}/edit", method: :get %>
     </li>
+    </div>
     <%end%>
-    <li>
-        <%= link_to '詳細', "/tweets/#{@tweet.id}", method: :get %>
-    </li>
-  </div>
-  <%= @nickname %>
+  
 </div>
+   <div class="likes">
+        <%= render 'likes/like', tweet: @tweet %>
+        <div class="like">いいね！
+        </div>
+          </div>
     <div class="card-body">
       <p class="card-text"><%= @tweet.text%></p>
     </div> 

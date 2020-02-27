@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
   def show
     user = User.find(params[:id])
-    @nickname = current_user.nickname
-    @tweets = current_user.tweets
+    @nickname = user.nickname
+    @tweets = user.tweets
+    @image = user.image
   end
 
   def edit
+    
   end
 
   def update
@@ -19,7 +21,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email)
+    params.require(:user).permit(:nickname, :email,:image)
   end
 
 end
