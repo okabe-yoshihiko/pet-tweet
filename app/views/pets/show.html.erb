@@ -1,0 +1,45 @@
+<style>
+.pet_box{
+  margin-top:100px;
+}
+.petcard{
+  margin:0 auto;
+  border:1px solid;
+}
+.icon-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
+  object-fit: cover;
+}
+</style> 
+ 
+ 
+ 
+ <div class="pet_box">
+  <div class="petcard mb-3" style="max-width: 540px;">
+  <div class="aacol-md-4">
+  <a href="/users/<%= @pet.user.id %>">
+  <img class="icon-image" src=<%= @pet.user.image %>> <%= @pet.user.nickname%>
+  </a>
+       <img src=<%= @pet.image %> class="card-img">
+      </div>
+    <div class="row no-gutters">
+  
+    
+      <div class="col-md-8">
+        <div class="card-body">
+        <p class="card-text">名前:<%= @pet.name %></p>
+        <p class="card-text">状況:<%= @pet.text %></p>
+        <p class="card-text">特徴:<%= @pet.charactarisitc %></p>
+        <p class="card-text">どこで:<%= @pet.address %>付近</p>
+        <p class="card-text">見つけたら:<%= @pet.find %></p>
+        <p class="card-text">連絡先"<%= @pet.tell %>"までお願いします</p>
+        <a class="backbtn" href="/pets">投稿一覧へ戻る</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  
+ 

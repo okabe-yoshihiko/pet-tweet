@@ -1,0 +1,27 @@
+<style>
+.tweetbtn{
+  margin:100px auto;
+  width:100%;
+  border-radius:30px;
+
+} 
+.custom-file{
+  margin:20px 0 ;
+}
+
+
+.container{
+  margin-top:55px;
+}
+</style>
+
+
+
+<div class="contents row">
+  <div class="container">
+  <h1>pets</h1>
+    <%= form_with(model: @pet, local: true) do |form| %>
+    <%= render partial: "form", locals: { form: form } %>
+    <% end %>
+  </div>
+</div>
