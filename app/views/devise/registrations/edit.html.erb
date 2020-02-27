@@ -2,6 +2,11 @@
 .editform{
   margin:100px 50px;
 }
+
+.img{
+  max-height: 50px;
+  border-radius:50px 50px;
+}
 </style>
 
 
@@ -20,6 +25,12 @@
         <%= f.label :nickname %> <em>(6 characters maximum)</em><br />
         <%= f.text_field :nickname, autofocus: true, autocomplete:"nickname", maxlength: "6",class:'form-control' %>
    </div>
+      image
+      <div class="custom-file">
+      <%= f.file_field :image,class:'custom-file-input' ,id:'customFileLang',lang:'es' %>
+      <%= f.label :image ,class:'custom-file-label',for:'customFileLang'%>
+    </div>
+
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
@@ -38,11 +49,6 @@
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" ,class:'form-control'%>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(変更前のパスワードを入力してください。)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password",class:'form-control' %>
   </div>
 
   <div class="actions">

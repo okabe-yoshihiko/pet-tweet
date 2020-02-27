@@ -54,4 +54,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'carrierwave'
 gem 'pry-rails'
 gem 'devise'
-
+gem 'geocoder'
+gem 'gon'

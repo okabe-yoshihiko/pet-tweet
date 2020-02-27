@@ -3,19 +3,49 @@
 <style>
 .card_list{
   width:500px;
-  margin:100px auto;
+  margin:10px auto;
 }
 .card-col{
   margin: 10px 0;
 }
 
 .likes{
-  float:right;
   margin:5px;
+  display:flex;
+}
+.profile{
+  width:500px;
+  height:100px;
+  padding:30px;
+  margin:10px auto;
+  border-radius:30px;
+  border:1px solid;
+}
+
+.homeheader{
+  width:500px;
+  margin:100px  auto 0;
+  display: flex;
+  justify-content: center;
+}
+
+.icon-image{
+  width:100px;
+  height:100px;
+  border-radius: 100px;
 }
 </style>
 
+<div class="homeheader">
+<img class="icon-image" src=<%= @image %>>
 
+
+</div>
+<div class="profile">
+name:
+<%= @nickname %>
+<p>profile:</p>
+</div>
 <div class="card_list">
   <p><%= @nickname %>さんの投稿一覧</p>
 
@@ -24,24 +54,24 @@
   <div class="card">
     <img src=<%= tweet.image %> class="card-img-top">
     <div class="more"> 
-  <button type="button" class="arrow" data-toggle="dropdown" >
-    <span><%= image_tag 'arrow_top.png' %></span>
-  </button>
-  <div class="dropdown-menu">
       <% if user_signed_in? && current_user.id == tweet.user_id %>
+       <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+      <div class="dropdown-menu">
     <li>
         <%= link_to'削除', "/tweets/#{tweet.id}", method: :delete %>
     </li>      
     <li>
         <%= link_to'編集', "/tweets/#{tweet.id}/edit", method: :get %>
     </li>
+    </div>
     <%end%>
-    <li>
-        <%= link_to '詳細', "/tweets/#{tweet.id}", method: :get %>
-    </li>
-  </div>
+  
        <div class="likes">
         <%= render 'likes/like', tweet: tweet %>
+        <div class="like">
+        いいね！
 </div>
     <div class="card-body">
       <p class="card-text"><%= tweet.text%></p>

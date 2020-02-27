@@ -1,0 +1,44 @@
+   <style>
+   .img{
+     height:100px;
+     width:100px;
+     margin:10px center;
+   }
+   </style>
+   
+   
+    <div class="custom-file">
+    <%= form.file_field :image,class:"custom-file-input",id:'customFileLang', lang:"es" %>
+    <label class="custom-file-label" for="customFileLang">画像を選べ</label>
+    </div>
+    <% if @pet.image.present? %>
+  <%= image_tag @pet.image, id: :img_prev,class:'img'  %>
+<% else %>
+  <%= image_tag "sample.jpeg", id: :img_prev,class:'img' %>
+<% end %>
+<script type="text/javascript">
+  $(function() {
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+    $('#img_prev').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#customFileLang").change(function(){
+        readURL(this);
+  
+    });
+    
+  });
+</script>
+
+      <%= form.text_field :name,class:"form-control" ,placeholder:"迷子のお名前"%>
+      <%= form.text_field :address,class:"form-control" ,placeholder:"住所"%>
+      <%= form.text_field :charactarisitc,class:"form-control" ,placeholder:"特徴"%>
+      <%= form.text_area :text,class:"form-control" ,placeholder: "text" , rows: "5" %>
+      <%= form.text_area :find,class:"form-control" ,placeholder: "もし見つけたら" , rows: "3" %>
+      <%= form.text_area :tell,class:"form-control" ,placeholder: "連絡先" %>
+      <%= form.submit class:"tweetbtn btn-primary",data: { disable_with: '投稿中..' } %>
