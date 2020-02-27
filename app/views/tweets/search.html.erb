@@ -1,0 +1,38 @@
+<%= form_with(url: search_tweets_path, local: true, method: :get, class: "search-form") do |form| %>
+  <%= form.text_field :keyword, placeholder: "投稿を検索する", class: "search-input" %>
+  <%= form.submit "検索", class: "search-btn" %>
+<% end %>
+
+<div class="card-col">
+     <% @tweets.each do |tweet| %>
+  <div class="card">
+    <img src=<%= tweet.image %> class="card-img-top">
+    <div class="more"> 
+  <button type="button" class="arrow" data-toggle="dropdown" >
+    <span><%= image_tag 'arrow_top.png' %></span>
+  </button>
+  <div class="dropdown-menu">
+      <% if user_signed_in? && current_user.id == tweet.user_id %>
+    <li>
+        <%= link_to'削除', "/tweets/#{tweet.id}", method: :delete %>
+    </li>      
+    <li>
+        <%= link_to'編集', "/tweets/#{tweet.id}/edit", method: :get %>
+    </li>
+    <%end%>
+    <li>
+        <%= link_to '詳細', "/tweets/#{tweet.id}", method: :get %>
+    </li>
+  </div>
+       <div class="likes">
+        <%= render 'likes/like', tweet: tweet %>
+        <div class="like">
+        いいね！
+</div>
+    <div class="card-body">
+      <p class="card-text"><%= tweet.text%></p>
+    </div> 
+  </div>
+  <%end%>
+  
+</div>
