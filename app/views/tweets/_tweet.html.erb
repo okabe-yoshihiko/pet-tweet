@@ -30,7 +30,11 @@
 
 <span class="cardheader">
  <a href="/users/<%= tweet.user.id %>">
+ <% if tweet.user.image? %>
 <img class="icon-image" src=<%= tweet.user.image %>> <%= tweet.user.nickname%>
+<% else %>
+  <image src="/assets/icon.jpg" class="icon-image"> <%= tweet.user.nickname%>
+  <%end%>
 </span></a>
 <a href="/tweets/<%= tweet.id %>">
     <img src=<%= tweet.image %> class="card-img-top">

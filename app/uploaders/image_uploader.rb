@@ -27,6 +27,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
+  def store_dir
+    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  end
+
 
   # Create different versions of your uploaded files:
   # version :thumb do
@@ -44,4 +48,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+
+  #デフォルト画像の設定
+  # Provide a default URL as a default if there hasn't been a file uploaded:
+  def default_url(*args)
+    #   For Rails 3.1+ asset pipeline compatibility:
+      ActionController::Base.helpers.asset_path("fallback/" + [version_name, "icon.jpg"].compact.join('_'))
+    #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
+    end
 end
