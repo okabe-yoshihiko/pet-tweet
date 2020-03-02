@@ -64,7 +64,11 @@ body{
     </form>
     </ul>
  <% if user_signed_in? %>
+ <% if current_user.image? %>
 <h6><img src=<%= current_user.image %> class = "icon_image">"<%= current_user.nickname %>"がログイン中</h6>
+<% else %>
+  <image src="/assets/icon.jpg" class="icon_image">
+<% end %>
  <div class="btn-group" role="group" aria-label="Basic example">
   <%= link_to "編集", edit_user_registration_path(current_user),class:'btn btn-primary' %>
   <%= link_to "Logout", destroy_user_session_path, method: :delete ,class:'btn btn-primary' %>
