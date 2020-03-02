@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     @nickname = user.nickname
     @tweets = user.tweets
     @image = user.image
+    @profile = user.profile
   end
 
   def edit
@@ -17,6 +18,19 @@ class UsersController < ApplicationController
       render :edit
     end
   end
+
+
+  def following
+    @user  = User.find(params[:id])
+    @users = @user.followings
+    render 'show_follow'
+end
+
+def followers
+  @user  = User.find(params[:id])
+  @users = @user.followers
+  render 'show_follower'
+end
 
   private
 

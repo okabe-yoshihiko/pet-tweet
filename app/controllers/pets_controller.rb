@@ -1,4 +1,5 @@
 class PetsController < ApplicationController
+  before_action :move_to_index, except: [:index, :show,:search]
   def index
     @pets= Pet.includes(:user).order("created_at DESC")
   end
@@ -28,6 +29,10 @@ class PetsController < ApplicationController
   private
   def pet_params
     params.require(:pet).permit(:image,:text,:name,:address, :latitude, :longitude,:charactarisitc,:find,:tell).merge(user_id: current_user.id)
+  end
+
+  def move_to_index
+    redirect_to action: :index unless user_signed_in?
   end
 
 end

@@ -44,15 +44,19 @@
 <div class="profile">
 name:
 <%= @nickname %>
-<p>profile:</p>
+<p>profile:
+<%= @profile %>
+</p>
 </div>
+
 <div class="card_list">
   <p><%= @nickname %>さんの投稿一覧</p>
-
 <div class="card-col">
      <% @tweets.each do |tweet| %>
   <div class="card">
+<a href="/tweets/<%= tweet.id %>">
     <img src=<%= tweet.image %> class="card-img-top">
+    </a>
     <div class="more"> 
       <% if user_signed_in? && current_user.id == tweet.user_id %>
        <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -67,12 +71,13 @@ name:
     </li>
     </div>
     <%end%>
-  
+     <% if user_signed_in? %>
        <div class="likes">
         <%= render 'likes/like', tweet: tweet %>
         <div class="like">
         いいね！
 </div>
+<%end%>
     <div class="card-body">
       <p class="card-text"><%= tweet.text%></p>
     </div> 
