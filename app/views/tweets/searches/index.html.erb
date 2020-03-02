@@ -10,6 +10,12 @@
   margin:5px;
   display:flex;
 }
+.icon-image {
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  object-fit: cover;
+}
 </style>
 
 
@@ -21,40 +27,32 @@
 <div class="card-columns">
  <% @tweets.each do |tweet| %>
 <div class="card">
-投稿者   <%= tweet.user.nickname%>
+
+<span class="cardheader">
+ <a href="/users/<%= tweet.user.id %>">
+ <% if tweet.user.image? %>
+<img class="icon-image" src=<%= tweet.user.image %>> <%= tweet.user.nickname%>
+<% else %>
+  <image src="/assets/icon.jpg" class="icon-image"> <%= tweet.user.nickname%>
+  <%end%>
+</span></a>
+<a href="/tweets/<%= tweet.id %>">
     <img src=<%= tweet.image %> class="card-img-top">
+    </a>
   <div class="more"> 
-     <button type="button" class="arrow" data-toggle="dropdown" >
-      <span><%= image_tag 'arrow_top.png' %></span>
-     </button>
-    <div class="dropdown-menu">
-       <% if user_signed_in? && current_user.id == tweet.user_id %>
-      <li>
-        <%= link_to'削除', "/tweets/#{tweet.id}", method: :delete %>
-      </li>      
-      <li>
-        <%= link_to'編集', "/tweets/#{tweet.id}/edit", method: :get %>
-      </li>
-      <%end%>
-      <li>
-        <%= link_to '詳細', "/tweets/#{tweet.id}", method: :get %>
-      </li>
-    </div>
-      <div class="user_box">
-       <% if user_signed_in?%>
-     
-          <div class="likes">
-        <%= render 'likes/like', tweet: tweet %>
-        <div class="like">
-        いいね！
-        </div>
-          </div>
-            <%end%>
+    <div class="user_box">
+    <% if user_signed_in?%>
+      <div class="likes">
+      <%= render 'likes/like', tweet: tweet %>
+      <div class="like">
+      いいね！
       </div>
+      </div>
+    <%end%>
+    </div>
+    </div>
       <div class="card-body">
         <p class="card-text"><%= tweet.text%></p>
       </div>
-  </div> 
-
 </div>
 <%end%>
