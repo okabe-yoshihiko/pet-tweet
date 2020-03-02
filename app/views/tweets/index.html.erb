@@ -10,6 +10,10 @@
   margin: 100px auto;
   
 }
+
+.tweet-list{
+  padding: 0;
+}
 </style>
 </head>
 <body>
@@ -17,6 +21,7 @@
     <% @tweets.each do |tweet| %>
  <%= render partial: "tweet", locals: { tweet: tweet } %>
 <%end%> 
+<%= paginate(@tweets) %>
 </div>
 </body>
 </html>

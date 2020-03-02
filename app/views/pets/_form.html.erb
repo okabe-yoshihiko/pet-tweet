@@ -1,44 +1,36 @@
-   <style>
-   .img{
-     height:100px;
-     width:100px;
-     margin:10px center;
-   }
-   </style>
-   
-   
+
     <div class="custom-file">
     <%= form.file_field :image,class:"custom-file-input",id:'customFileLang', lang:"es" %>
-    <label class="custom-file-label" for="customFileLang">画像を選べ</label>
+    <label class="custom-file-label" for="customFileLang">画像を選択</label>
     </div>
-    <% if @pet.image.present? %>
-  <%= image_tag @pet.image, id: :img_prev,class:'img'  %>
-<% else %>
-  <%= image_tag "sample.jpeg", id: :img_prev,class:'img' %>
-<% end %>
-<script type="text/javascript">
-  $(function() {
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-    $('#img_prev').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(input.files[0]);
-        }
+    <div class="imagebox" style="width:100%;display:flex;">
+        <img id="img1" style="width:300px;" />
+    </div>
+<script>
+$(function(){
+  $('#customFileLang').change(function(e){
+    var file = e.target.files[0];
+    var reader = new FileReader();
+    if(file.type.indexOf("image") < 0){
+      alert("画像ファイルを指定してください。");
+      return false;
     }
-    $("#customFileLang").change(function(){
-        readURL(this);
-  
-    });
-    
+    reader.onload = (function(file){
+      return function(e){
+        $("#img1").attr("src", e.target.result);
+        $("#img1").attr("title", file.name);
+      };
+    })(file);
+    reader.readAsDataURL(file);
+ 
   });
+});
 </script>
 
-      <%= form.text_field :name,class:"form-control" ,placeholder:"迷子のお名前"%>
-      <%= form.text_field :address,class:"form-control" ,placeholder:"住所"%>
-      <%= form.text_field :charactarisitc,class:"form-control" ,placeholder:"特徴"%>
-      <%= form.text_area :text,class:"form-control" ,placeholder: "text" , rows: "5" %>
-      <%= form.text_area :find,class:"form-control" ,placeholder: "もし見つけたら" , rows: "3" %>
-      <%= form.text_area :tell,class:"form-control" ,placeholder: "連絡先" %>
+      <%= form.text_field :name,class:"form-control m-1" ,placeholder:"迷子のお名前"%>
+      <%= form.text_field :address,class:"form-control m-1" ,placeholder:"住所"%>
+      <%= form.text_field :charactarisitc,class:"form-control m-1" ,placeholder:"特徴"%>
+      <%= form.text_area :text,class:"form-control m-1" ,placeholder: "状況" , rows: "5" %>
+      <%= form.text_area :find,class:"form-control m-1" ,placeholder: "もし見つけたら" , rows: "3" %>
+      <%= form.text_area :tell,class:"form-control m-1" ,placeholder: "連絡先" %>
       <%= form.submit class:"tweetbtn btn-primary",data: { disable_with: '投稿中..' } %>

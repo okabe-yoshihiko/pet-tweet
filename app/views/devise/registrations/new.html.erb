@@ -4,9 +4,12 @@
   margin:100px 50px;
 }
 
-.img{
-  max-height: 50px;
-  border-radius:50px 50px;
+img{
+  max-height: 100px;
+  max-width: 100px;
+  border-radius:100px;
+  margin:5px;
+  background:black;
 }
 </style>
 
@@ -30,6 +33,27 @@
       <%= f.file_field :image,class:'custom-file-input' ,id:'customFileLang',lang:'es' %>
       <%= f.label :image ,class:'custom-file-label',for:'customFileLang'%>
     </div>
+        <img id="img1" style="width:300px;" />
+<script>
+$(function(){
+  $('#customFileLang').change(function(e){
+    var file = e.target.files[0];
+    var reader = new FileReader();
+    if(file.type.indexOf("image") < 0){
+      alert("画像ファイルを指定してください。");
+      return false;
+    }
+    reader.onload = (function(file){
+      return function(e){
+        $("#img1").attr("src", e.target.result);
+        $("#img1").attr("title", file.name);
+      };
+    })(file);
+    reader.readAsDataURL(file);
+ 
+  });
+});
+</script>
    
   <div class="field">
     <%= f.label :password %>

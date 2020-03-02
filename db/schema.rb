@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_25_074806) do
+ActiveRecord::Schema.define(version: 2020_02_29_103303) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
@@ -34,9 +34,22 @@ ActiveRecord::Schema.define(version: 2020_02_25_074806) do
     t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "adress"
     t.float "latitude"
     t.float "longitude"
+    t.string "address"
+    t.string "charactarisitc"
+    t.string "find", limit: 225
+    t.text "tell", limit: 255
+  end
+
+  create_table "relationships", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "following_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["follower_id", "following_id"], name: "index_relationships_on_follower_id_and_following_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
+    t.index ["following_id"], name: "index_relationships_on_following_id"
   end
 
   create_table "tweets", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -57,6 +70,7 @@ ActiveRecord::Schema.define(version: 2020_02_25_074806) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "nickname"
+    t.string "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -11,8 +11,13 @@ Rails.application.routes.draw do
     collection do
       get 'search'
     end
+  end 
+  resources :users do
+  member do
+    get :following, :followers
+   end
   end
-  resources :users, only: [:show,:edit,:update]
+  resources :relationships, only: [:create, :destroy]
   resources :likes, only: [:create, :destroy]
   resources :pets, only: [:index,:new,:create,:show,:destroy]
 end
