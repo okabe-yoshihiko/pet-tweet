@@ -37,7 +37,7 @@
 </style>
 
 <div class="homeheader">
-<% if current_user.image? %>
+<% if @user.image? %>
 <img class="icon-image" src=<%= @image %>>
 <% else %>
 <image src="/assets/icon.jpg" class="icon_image">

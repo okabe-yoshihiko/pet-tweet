@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     @tweets = user.tweets
     @image = user.image
     @profile = user.profile
+    @user  = User.find(params[:id])
   end
 
   def edit
