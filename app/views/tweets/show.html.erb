@@ -54,38 +54,35 @@ margin:100px 50px;
       <% else %>
         <image src="/assets/icon.jpg" class="icon-image"> <%= @tweet.user.nickname%>
       <% end %>
-    </span></a>
-      <div class="card">
-    <img src=<%= @tweet.image %> class="card-img-top">
-      <div class="btn-group">  
-     <% if user_signed_in? && current_user.id == @tweet.user_id %>
-      <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <span class="sr-only">Toggle Dropdown</span>
-      </button>
-      <div class="dropdown-menu">
-    <li>
-        <%= link_to'削除', "/tweets/#{@tweet.id}", method: :delete %>
-    </li>      
-    <li>
-        <%= link_to'編集', "/tweets/#{@tweet.id}/edit", method: :get %>
-    </li>
-    </div>
-    
-    <%end%>
-
-
-   <div class="likes">
-   <% if user_signed_in? %>
+      </span></a>
+        <div class="card">
+          <img src=<%= @tweet.image %> class="card-img-top">
+            <div class="btn-group">  
+              <% if user_signed_in? && current_user.id == @tweet.user_id %>
+              <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+                <div class="dropdown-menu">
+                  <li>
+                  <%= link_to'削除', "/tweets/#{@tweet.id}", method: :delete %>
+              </li>      
+              <li>
+                  <%= link_to'編集', "/tweets/#{@tweet.id}/edit", method: :get %>
+              </li>
+                </div>
+              <%end%>
+            </div>
+          </div>
+    <div class="likes">
+      <% if user_signed_in? %>
         <%= render 'likes/like', tweet: @tweet %>
         <div class="like">いいね！
+         </div>
          <%end%>
-        </div>
-       
-          </div>
+    </div>
     <div class="card-body">
       <p class="card-text"><%= @tweet.text%></p>
     </div> 
-  </div>
   </div>
    <div class="container">
     <div class="comments">
@@ -96,21 +93,23 @@ margin:100px 50px;
             <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
             <div class="comment"><%= comment.text %></div>
            <div class="date"> <%= comment.created_at %></div>
-          </div>
+      </div>
         <% end %>
       <% end %>
     </div>
    <% if current_user %>
       <%= form_with(model: [@tweet, @comment], local: true ,id:"new_comment") do |form| %>
       <div class="form-group">
-      <%= form.text_area :text, placeholder: "コメントする...",class:'form-box', rows: "2" %>
+        <%= form.text_area :text, placeholder: "コメントする...",class:'form-box', rows: "2" %>
       </div>
       <div class="subbtn">
         <%= form.submit "SEND",class:'subbtn btn-primary' %>
-        </div>
+      </div>
       <% end %>
     <% else %>
     <div class="alert alert-primary" role="alert">
-     コメントの投稿には新規登録/ログインが必要です 
+     コメントの投稿には新規登録/ログインが必要です
+     </div>
     <% end %>
-    </div>
+   
+</div>
