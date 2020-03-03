@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  post   '/like/:story_id' => 'likes#like',   as: 'like'
-  delete '/like/:story_id' => 'likes#unlike', as: 'unlike'
+  post   '/like/:tweet_id' => 'likes#like',   as: 'like'
+  delete '/like/:tweet_id' => 'likes#unlike', as: 'unlike'
   devise_for :users, controllers: { registrations: 'registrations' } 
   root to: 'tweets#index'
   namespace :tweets do
