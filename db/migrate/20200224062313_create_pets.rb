@@ -5,6 +5,9 @@ class CreatePets < ActiveRecord::Migration[5.2]
       t.integer   :user_id
       t.string    :name
       t.string    :text
+      t.text      :charactarisitc
+      t.text      :find
+      t.text      :tell
       t.timestamps
     end
   end
