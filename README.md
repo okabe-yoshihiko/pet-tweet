@@ -58,8 +58,8 @@ testパスワード test_user</br>
 
 
 ## tweetsテーブル
-|Column|Type|Options|</br>
-|------|----|-------|</br>
+|Column|Type|Options|
+|------|----|-------|
 |text|string|</br>
 |image|string|</br>
 |user_id|integer|null: false|</br>
