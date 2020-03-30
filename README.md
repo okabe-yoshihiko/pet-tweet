@@ -34,7 +34,7 @@ testパスワード test_user</br>
 .Ruby/Ruby on Rails/MySQL/Github/AWS/Visual Studio Code</br>
 
 ### 課題や今後実装したい機能
-フォロー機能の実装、地域猫の登録とマップ表示。ペット飼っている人のためのアイテム紹介（amazon apiを使用し収益化)
+フォロー機能の実装、地域猫の登録とマップ表示。ペット飼っている人のためのアイテム紹介
 
 ### DB設計
 
