@@ -48,27 +48,27 @@ testパスワード test_user</br>
 |password|string|null: false|
 
 ### Association
-  has_many :tweets
-  has_many :comments
-  has_many :likes, dependent: :destroy
-  has_many :likes, dependent: :destroy
-  has_many :like_tweets, through: :likes, source: :tweet
-  has_many :pets
+  has_many :tweets</br>
+  has_many :comments</br>
+  has_many :likes, dependent: :destroy</br>
+  has_many :likes, dependent: :destroy</br>
+  has_many :like_tweets, through: :likes, source: :tweet</br>
+  has_many :pets</br>
 
 
 
 ## tweetsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|text|string|
-|image|string|
-|user_id|integer|null: false|
+|Column|Type|Options|</br>
+|------|----|-------|</br>
+|text|string|</br>
+|image|string|</br>
+|user_id|integer|null: false|</br>
 
 ### Association
-  belongs_to :user
-  has_many :comments
-  has_many :likes, dependent: :destroy
-  has_many :liking_users, through: :likes, source: :user
+  belongs_to :user</br>
+  has_many :comments</br>
+  has_many :likes, dependent: :destroy</br>
+  has_many :liking_users, through: :likes, source: :user</br>
 
 
 ## petsテーブル
@@ -85,9 +85,9 @@ testパスワード test_user</br>
 |latitude|float|null: false|
 |longitude|float|null: false|
 ### Association
-  belongs_to :user
-  geocoded_by :address
-  after_validation :geocode, if: :address_changed?
+  belongs_to :user</br>
+  geocoded_by :address</br>
+  after_validation :geocode, if: :address_changed?</br>
 
 
 
@@ -107,6 +107,6 @@ testパスワード test_user</br>
 |tweet_id|integer|null: false, foreign_key: true|
 |text|string|
 ### Association
-  belongs_to :tweet
-  belongs_to :user
+  belongs_to :tweet</br>
+  belongs_to :user</br>
 
