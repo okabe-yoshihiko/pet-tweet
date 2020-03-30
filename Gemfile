@@ -58,3 +58,8 @@ gem 'geocoder'
 gem 'gon'
 gem 'kaminari'
 gem 'squasher'
+gem "aws-sdk-s3", require: false
+group :production do
+  gem 'pg'
+  gem 'fog-aws'
+end
