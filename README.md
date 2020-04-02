@@ -13,7 +13,6 @@ testアカウント test_user@gmail.com</br>
 testパスワード test_user</br>
 
 
-
 ### 制作背景
 自分がペットを飼っていて、みんなと共有できるサイトが欲しかったのと、ペットが</br>
 居なくなった時（逃げ出すなど）に役立つ捜索ができるサービスを作りたかったため。
@@ -31,7 +30,7 @@ testパスワード test_user</br>
 また、user登録時写真を登録したくない人のためにデフォルト画像を用意しました。</br>
 
 ### 使用技術(開発環境)
-.Ruby/Ruby on Rails/MySQL/Github/AWS/Visual Studio Code</br>
+.Ruby/Ruby on Rails/MySQL/Github/AWS/heroku/Visual Studio Code</br>
 
 ### 課題や今後実装したい機能
 フォロー機能の実装、地域猫の登録とマップ表示。ペット飼っている人のためのアイテム紹介
